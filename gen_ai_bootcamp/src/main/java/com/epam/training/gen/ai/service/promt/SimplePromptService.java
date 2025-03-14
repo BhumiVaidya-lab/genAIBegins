@@ -26,7 +26,7 @@ import java.util.List;
 @Service
 public class SimplePromptService {
 
-    @Value("${client-openai-deployment-name}")
+    @Value("${client-azureopenai-deployment-name}")
     private String DEPLOYMENT_OR_MODEL_NAME;
 
     @Autowired
@@ -53,13 +53,13 @@ public class SimplePromptService {
                 .toList() : null;
     }
 
-    public List<String> getChatCompletionsHistory(String userInput) {
+    public String getChatCompletionsHistory(String userInput) {
         ChatHistory history = new ChatHistory();
         history.addUserMessage(userInput);
 
         List<ChatMessageContent<?>> response = chatCompletionService.getChatMessageContentsAsync(
                 history, kernel, invocationContext).block();
         history.addAll(response);
-        return response != null ? response.stream().map(ChatMessageContent::getContent).toList() : null;
+        return response != null ? response.stream().map(ChatMessageContent::getContent).findFirst().get() : null;
     }
 }

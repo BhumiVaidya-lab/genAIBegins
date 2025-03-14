@@ -12,7 +12,7 @@ public class AIController {
     SimplePromptService simplePromptService;
     @GetMapping("/query")
     public String getResponse(@RequestParam String input){
-        return simplePromptService.getChatCompletionsHistory(input).toString();
+        return simplePromptService.getChatCompletionsHistory(input);
     }
 
 }

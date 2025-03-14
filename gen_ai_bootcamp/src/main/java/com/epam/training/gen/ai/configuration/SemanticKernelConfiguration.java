@@ -23,7 +23,7 @@ import java.util.Map;
 @Configuration
 public class SemanticKernelConfiguration {
 
-    @Value("${client-openai-deployment-name}")
+    @Value("${client-azureopenai-deployment-name}")
     private String DEPLOYMENT_OR_MODEL_NAME;
 
     /**
