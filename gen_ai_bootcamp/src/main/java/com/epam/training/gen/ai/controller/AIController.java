@@ -14,5 +14,4 @@ public class AIController {
     public String getResponse(@RequestParam String input){
         return simplePromptService.getChatCompletionsHistory(input);
     }
-
 }

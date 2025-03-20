@@ -63,3 +63,4 @@ public class SimplePromptService {
         return response != null ? response.stream().map(ChatMessageContent::getContent).findFirst().get() : null;
     }
 }
+
