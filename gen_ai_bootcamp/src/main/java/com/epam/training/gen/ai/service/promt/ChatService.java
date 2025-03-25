@@ -40,9 +40,9 @@ public class ChatService {
                 Optional.ofNullable(response).map(FunctionResult::getResult).orElse("No Response..!");
         chatHistory.addUserMessage(prompt);
         chatHistory.addAssistantMessage(result);
-        chatHistory.addUserMessage("What do you know about me ?");
+        chatHistory.addUserMessage("Hi,How are you");
         chatHistory.addAssistantMessage(
-                "I know about you that your name is Teja Mitte and you're a java developer.");
+                "Hey! I'm doing great, thanks for asking. How about you?");
         chatHistory.forEach(chatMessageContent -> log.info(chatMessageContent.getContent()));
         log.info("AI answer : {}", result);
         return ChatBotResponse.builder().userPrompt(prompt).chatBotResponse(result).build();
