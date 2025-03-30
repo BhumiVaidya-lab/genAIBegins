@@ -1,40 +1,58 @@
 package com.epam.training.gen.ai.controller;
 
-import com.epam.training.gen.ai.model.Chat;
-import com.epam.training.gen.ai.model.ChatBotResponse;
 import com.epam.training.gen.ai.service.promt.ChatService;
-import com.epam.training.gen.ai.service.promt.SimplePromptService;
+import com.epam.training.gen.ai.model.UserRequest;
+import com.epam.training.gen.ai.model.AIResponse;
+import com.epam.training.gen.ai.service.promt.ChatBotService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/azure/ai")
 public class AIController {
-
-    @Autowired
-    private final SimplePromptService simplePromptService;
+    private final ChatBotService botService;
     private final ChatService chatService;
+    private final RestTemplate restTemplate;
+
+    @Value("${epam.dial.deployment-names-api}")
+    private String DEPLOYMENT_NAMES_URL;
+
     /**
-     * Get response for a chat query.
-     *
-     * @param input the user input to send to AI.
-     * @return the AI-generated response.
+     * @param userPrompt Input from the User
+     * @param integratePlugin To work with Mobile Phones plugin
+     * @return Response of th eChatBot
      */
-    @GetMapping("/query")
-    public String getResponse(@RequestParam String input) {
-        return simplePromptService.getChatCompletionsHistory(input);
+    @GetMapping(value = "/getResponse")
+    public AIResponse getGeneratedResponse(
+            @RequestParam String userPrompt,
+            @RequestParam(value = "integratePlugin", required = false) Boolean integratePlugin) {
+
+        return Optional.ofNullable(botService)
+                .map(
+                        chatBotService ->
+                                chatBotService.getChatBotResponse(
+                                        userPrompt, integratePlugin != null ? integratePlugin : false))
+                .orElseGet(AIResponse::new);
     }
 
-
-    @PostMapping("/store")
-    public ChatBotResponse storeChatEntry(@RequestBody Chat chat) {
+    @PostMapping(value = "/init-chat")
+    public AIResponse getResponseFromHistory(@RequestBody UserRequest userRequest) {
         return Optional.ofNullable(chatService)
-                .map(chatService ->chatService.processWithHistory(chat))
-                .orElseGet(ChatBotResponse::new);
+                .map(kernelHistory -> kernelHistory.processWithHistory(userRequest))
+                .orElseGet(AIResponse::new);
+    }
 
+    @GetMapping(value = "getDeploymentNames")
+    public ResponseEntity<String> getDeploymentNames() {
+        return new ResponseEntity<>(
+                Optional.ofNullable(restTemplate.getForObject(DEPLOYMENT_NAMES_URL, String.class))
+                        .orElseThrow(),
+                HttpStatus.OK);
     }
 }
