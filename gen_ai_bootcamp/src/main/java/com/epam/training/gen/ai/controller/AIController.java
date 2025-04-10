@@ -55,4 +55,5 @@ public class AIController {
                         .orElseThrow(),
                 HttpStatus.OK);
     }
+
 }
