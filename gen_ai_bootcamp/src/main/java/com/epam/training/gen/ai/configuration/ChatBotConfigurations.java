@@ -45,13 +45,13 @@ public class ChatBotConfigurations {
                 .buildAsyncClient();
     }
 
-    @Bean
-    public ChatCompletionService chatCompletionService() {
-        return OpenAIChatCompletion.builder()
-                .withModelId(deploymentName)
-                .withOpenAIAsyncClient(openAIAsyncClient())
-                .build();
-    }
+//    @Bean
+//    public ChatCompletionService chatCompletionService() {
+//        return OpenAIChatCompletion.builder()
+//                .withModelId(deploymentName)
+//                .withOpenAIAsyncClient(openAIAsyncClient())
+//                .build();
+//    }
 
     // Mobile Phones Plugin
     @Bean
@@ -60,22 +60,22 @@ public class ChatBotConfigurations {
     }
 
     //  kernel with Azure OpenAI chat completion and plugin
-    @Bean
-    public Kernel kernel() {
-        return Kernel.builder()
-                .withAIService(ChatCompletionService.class, chatCompletionService())
-                .withPlugin(kernelPlugin())
-                .build();
-    }
+//    @Bean
+//    public Kernel kernel() {
+//        return Kernel.builder()
+//                .withAIService(ChatCompletionService.class, chatCompletionService())
+//                .withPlugin(kernelPlugin())
+//                .build();
+//    }
 
     // Enable planning
-    @Bean
-    public InvocationContext invocationContext() {
-        return new InvocationContext.Builder()
-                .withReturnMode(InvocationReturnMode.LAST_MESSAGE_ONLY)
-                .withToolCallBehavior(ToolCallBehavior.allowAllKernelFunctions(true))
-                .build();
-    }
+//    @Bean
+//    public InvocationContext invocationContext() {
+//        return new InvocationContext.Builder()
+//                .withReturnMode(InvocationReturnMode.LAST_MESSAGE_ONLY)
+//                .withToolCallBehavior(ToolCallBehavior.allowAllKernelFunctions(true))
+//                .build();
+//    }
 
     @Bean
     public RestTemplate restTemplate() {
