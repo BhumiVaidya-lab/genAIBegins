@@ -53,3 +53,36 @@ Response
 AI answer : My favorite season is fall because I love the cooler weather, the changing colors of the leaves, 
 and all of the fun activities that come with it, like apple picking and pumpkin carving. 
 It's such a cozy and comforting time of year.
+
+Task 3
+
+API call with with different model:
+
+curl --location localhost:8080/init-chat
+
+{
+"prompt": "Can you help me to write patriotic poem",
+"temperature": 0.9,
+"deploymentName": "Mixtral-8x7B-Instruct-v0.1"
+}
+
+Response
+userPrompt:	Can you help me to write patriotic poem
+aiResponse:	I pledge allegiance to this land, Where freedom and justice go hand in hand. From sea to shining sea, 
+we stand united, In times of challenge, we are undivided. Our flag waves proudly in the breeze, A symbol of the land of the free. 
+We honor those who fought and bled, To protect the ideals upon which this nation was led. From our founding fathers to present day, 
+We strive to uphold the values they portrayed. Equality, liberty, and democracy, Are the pillars of our great country. 
+So let us stand tall and true, In honor of the red, white, and blue. For America, the land we love, We will always rise above.
+
+{
+"prompt": "Can you help me to write patriotic poem",
+"temperature": 0.9,
+"deploymentName": "chat-bison"
+}
+
+userPrompt:	Can you help me to write patriotic poem
+aiResponse:	Of course, here is a patriotic poem for you: In the land of the free, and the home of the brave, Our flag still waves,
+as our nation we save. From the mountains to the seas, Our country stands strong, united as one. We honor those who came before, 
+Who fought and died to protect our shore. They gave their all, without hesitation, To ensure our freedom, our great nation. 
+So let us stand tall, with pride and respect, For the red, white, and blue, we will never neglect. United we stand, in liberty and
+justice for all, America the beautiful, stand proud and tall.
