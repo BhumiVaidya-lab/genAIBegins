@@ -1,3 +1,84 @@
+task 5- https://git.epam.com/epm-cdp/global-java-foundation-program/java-courses/-/blob/main/gen-ai-bootcamp/materials/05-embedding/02_task.md
+Evaluation Criteria:
+
+Configuration for Vector Database - Done
+
+
+Correctly configured the application to use a vector database (e.g., Qdrant with qdrant plugin or you can use any other Vector DB) (15%)
+
+
+Build Embedding from Text - Done
+
+
+Implemented an endpoint to build an embedding from the provided text (15%)
+
+
+Build and Store Embedding from Text - Done
+
+
+Implemented an endpoint to build and store an embedding from the provided text (15%)
+
+
+Search for Closest Embeddings - Done
+
+
+Implemented an endpoint to search for the closest embeddings in the database based on the input text (25%)
+
+
+Functionality Testing - Done
+
+
+Application runs without errors (15%)
+Responses are generated correctly and are relevant to the prompts (15%)
+
+Evidences - Create collection -
+![image](https://github.com/user-attachments/assets/7ca7a6df-1871-4905-964c-48ddc45ca6e1)
+
+![image](https://github.com/user-attachments/assets/e99689d4-31ab-4f55-b32b-5738abd9a6dc)
+embedding endpoints:
+![image](https://github.com/user-attachments/assets/4900f80c-28ee-4205-acd7-d9463ffee8ef)
+build text embeddings
+![image](https://github.com/user-attachments/assets/4210b665-f7b1-4036-9072-3736516d2a2a)
+build and store vectors
+![image](https://github.com/user-attachments/assets/6d010487-24c1-4181-b347-9b012908fa15)
+![image](https://github.com/user-attachments/assets/58ee7f9e-6442-46ac-b454-08778a0da1a8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # genAIBegins
 Use with chat history:
 
