@@ -1,6 +1,5 @@
 package com.epam.training.gen.ai.controller;
 
-
 import com.epam.training.gen.ai.service.promt.EmbeddingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,7 +26,7 @@ public class EmbeddingController {
     }
 
     @GetMapping(value = "/search")
-    public ResponseEntity<List<String>> searchEmbedding(@RequestParam String text) {
+    public ResponseEntity<String> searchEmbedding(@RequestParam String text) {
         return new ResponseEntity<>(embeddingService.searchEmbeddings(text), HttpStatus.OK);
     }
 }
